@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <title>Diagram</title>
+        <style>
+            .questionaire-results-chart {
+                width: 100%;
+                max-width: 800px; /* Maximale Breite */
+                margin: 0 auto;
+            }
+
+            .questionaire-results-bar-container {
+                margin-bottom: 20px;
+            }
+
+            .questionaire-results-bar-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .questionaire-results-bar-row {
+                display: flex;
+                align-items: left;
+                gap: 10px;
+            }
+
+            .questionaire-results-bar {
+                height: 30px;
+                background-color: #4CAF50;
+                border-radius: 4px;
+                min-width: 2px;
+            }
+
+            .questionaire-results-bar-value {
+                font-size: 14px;
+                color: #9c9c9c;
+                white-space: nowrap; /* Verhindert Zeilenumbruch */
+                flex-shrink: 0; /* Verhindert Schrumpfen */
+                padding-top: 8px;
+            }
+
+            /* Responsive Anpassungen */
+            @media (max-width: 768px) {
+                .questionaire-results-chart {
+                    max-width: 95%;
+                    padding: 0 10px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .questionaire-results-chart {
+                    max-width: 100%;
+                    padding: 0 5px;
+                }
+                
+                .questionaire-results-bar {
+                    height: 25px;
+                }
+                
+                .questionaire-results-bar-value {
+                    font-size: 12px;
+                }
+            }
+
+            .rating-grid-auto-wrapper {
+                text-align: center;
+            }
+
+            .rating-grid-auto-container {
+                display: inline-grid;
+                grid-template-columns: repeat(4, auto);
+                justify-content: center;
+            }
+
+            .rating-grid-auto-container button {
+                width: 40px;
+                height: 40px;
+                background-color: #3545dc;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+                margin: 0 20px;
+            }
+
+            .rating-grid-auto-container button:hover {
+                background-color: #c82333;
+            }
+
+            .rating-grid-auto-text {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: space-between;
+            }
+
+        </style>
+    </head>
+    <body style="font-family: Arial;">
+        
+        <div class="questionnaire-question-wrapper" data-question="0" style="display: block;">
+            <h3 class="questionnaire-font questionnaire-question elementor-heading-title">Ich brauche einen klaren Plan bevor ich mich wohlf&uuml;hle.</h3>
+            <div class="rating-grid-auto-wrapper">
+                <div class="rating-grid-auto-container">
+                    <button type="button" class="rating-button" data-value="0" data-question="0" data-mappings="plan">                        0                                </button>
+                    <button type="button" class="rating-button" data-value="1" data-question="0" data-mappings="plan">                        1                                </button>
+                    <button type="button" class="rating-button" data-value="2" data-question="0" data-mappings="plan">                        2                                </button>
+                    <button type="button" class="rating-button" data-value="3" data-question="0" data-mappings="plan">                        3                                </button>
+                    <div class="questionnaire-rating rating-grid-auto-text">
+                        <span class="rating-label left-text" >Trifft nicht zu</span>
+                        <span class="rating-label right-text" >Trifft voll zu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--div class="questionaire-results-chart">
+            <div class="questionaire-results-bar-container">
+                <span class="questionaire-results-bar-label">Die innere Stimme der Perfektionistin</span>
+                <div class="questionaire-results-bar-row">
+                    <div class="questionaire-results-bar" style="width: 100%;"></div>
+                    <span class="questionaire-results-bar-value">70 Punkte</span>
+                </div>
+            </div>
+            <div class="questionaire-results-bar-container">
+                <span class="questionaire-results-bar-label">Die innere Stimme der Harmonie-Sucherin</span>
+                <div class="questionaire-results-bar-row">
+                    <div class="questionaire-results-bar" style="width: 45%;"></div>
+                    <span class="questionaire-results-bar-value">45 Punkte</span>
+                </div>
+            </div>
+            <div class="questionaire-results-bar-container">
+                <span class="questionaire-results-bar-label">Die innere Stimme der K&auml;mpferin</span>
+                <div class="questionaire-results-bar-row">
+                    <div class="questionaire-results-bar" style="width: 23%;"></div>
+                    <span class="questionaire-results-bar-value">45 Punkte</span>
+                </div>
+            </div>
+            <div class="questionaire-results-bar-container">
+                <span class="questionaire-results-bar-label">Die innere Stimme der Planerin</span>
+                <div class="questionaire-results-bar-row">
+                    <div class="questionaire-results-bar" style="width: 23%;"></div>
+                    <span class="questionaire-results-bar-value">45 Punkte</span>
+                </div>
+            </div>
+            <div class="questionaire-results-bar-container">
+                <span class="questionaire-results-bar-label">Die innere Stimme der Unabh&auml;ngigen</span>
+                <div class="questionaire-results-bar-row">
+                    <div class="questionaire-results-bar" style="width: 23%;"></div>
+                    <span class="questionaire-results-bar-value">45 Punkte</span>
+                </div>
+            </div>
+        </div-->
+    </body>
+</html>
