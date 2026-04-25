@@ -396,10 +396,10 @@ class Questionnaire_Widget extends Widget_Base {
                             <?php for ($i = 0; $i <= 3; $i++): ?>
                                 <button type="button" 
                                         class="rating-button" 
-                                        data-value="<?php echo $i; ?>"
+                                        data-value="<?php echo (int) $i; ?>"
                                         data-question="<?php echo esc_attr($index); ?>"
                                         data-mappings="<?php echo esc_attr($question['result_mappings']); ?>">
-                                    <?php echo $i; ?>
+                                    <?php echo (int) $i; ?>
                                 </button>
                             <?php endfor; ?>
                             <div class="rating-grid-auto-text">

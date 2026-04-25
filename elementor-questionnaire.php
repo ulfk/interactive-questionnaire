@@ -19,13 +19,11 @@ add_action('elementor/widgets/register', function( $widgets_manager ) {
     $widgets_manager->register(new Questionnaire_Widget());
 });
 
-// Scripts und Styles einbinden
-add_action('wp_enqueue_scripts', 'questionnaire_widget_scripts');
+// Register assets – Elementor only loads them on pages with the widget
+add_action('wp_enqueue_scripts', 'questionnaire_widget_register_assets');
 
-function questionnaire_widget_scripts() {
-    wp_enqueue_script('jquery');
-    
-    wp_enqueue_script(
+function questionnaire_widget_register_assets() {
+    wp_register_script(
         'questionnaire-widget',
         plugin_dir_url(__FILE__) . 'assets/questionnaire-widget.js',
         ['jquery'],
@@ -33,7 +31,7 @@ function questionnaire_widget_scripts() {
         true
     );
 
-    wp_enqueue_style(
+    wp_register_style(
         'questionnaire-widget',
         plugin_dir_url(__FILE__) . 'assets/questionnaire-widget.css',
         [],
