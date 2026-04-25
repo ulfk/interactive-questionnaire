@@ -45,7 +45,8 @@ class Questionnaire_Widget extends Widget_Base {
     }
 
     protected function register_controls() {
-        
+        $defaults = include __DIR__ . '/../defaults/questionnaire-defaults.php';
+
         // Content Section - Fragen verwalten
         $this->start_controls_section(
             'questions_section',
@@ -82,108 +83,7 @@ class Questionnaire_Widget extends Widget_Base {
                 'label' => __('Questions List', 'questionnaire-plugin'),
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'default' => [
-                    [//1
-                        'question_text' => 'Ich brauche einen klaren Plan bevor ich mich wohlfühle.',
-                        'result_mappings' => 'plan',
-                    ],
-                    [//2
-                        'question_text' => 'Ich habe das Gefühl, dass ich immer 110% geben muss, damit es gut genug ist.',
-                        'result_mappings' => 'perfekt',
-                    ],
-                    [//3
-                        'question_text' => 'Ich bemühe mich, es allen recht zu machen, damit niemand enttäuscht ist.',
-                        'result_mappings' => 'harmonie',
-                    ],
-                    [//4
-                        'question_text' => 'Wenn etwas schwierig wird, ziehe ich es durch - auch wenn es mich viel Kraft kostet.',
-                        'result_mappings' => 'kampf',
-                    ],
-                    [//5
-                        'question_text' => 'Ich verlasse mich ungern auf andere, weil ich lieber alles selbst in die Hand nehme.',
-                        'result_mappings' => 'unabhaengig',
-                    ],
-                    [//6
-                        'question_text' => 'Fehler in meiner Arbeit kann ich kaum akzeptieren.',
-                        'result_mappings' => 'perfekt',
-                    ],
-                    [//7
-                        'question_text' => 'Überraschungen oder ungeplante Ereignisse stören mich stark.',
-                        'result_mappings' => 'plan',
-                    ],
-                    [//8
-                        'question_text' => 'Mir ist es wichtig, alles meine Probleme alleine zu lösen.',
-                        'result_mappings' => 'unabhaengig',
-                    ],
-                    [//9
-                        'question_text' => 'Ich fühle mich schuldig, wenn ich bei einer Aufgabe aufgebe.',
-                        'result_mappings' => 'kampf',
-                    ],
-                    [//10
-                        'question_text' => 'Es macht mich unruhig, wenn jemand böse auf mich ist.',
-                        'result_mappings' => 'harmonie',
-                    ],
-                    [//11
-                        'question_text' => 'Ich überarbeite meine Aufgaben häufig, selbst wenn sie schon "fertig" sind.',
-                        'result_mappings' => 'perfekt',
-                    ],
-                    [//12
-                        'question_text' => '"Augen zu und durch" ist oft meine Devise.',
-                        'result_mappings' => 'kampf',
-                    ],
-                    [//13
-                        'question_text' => 'Es fällt mir schwer, unordentliche oder ungenaue Arbeit anderer zu akzeptieren.',
-                        'result_mappings' => 'perfekt',
-                    ],
-                    [//14
-                        'question_text' => 'Ich stelle oft meine Bedürfnisse hinten an, um andere zufriedenzustellen.',
-                        'result_mappings' => 'harmonie',
-                    ],
-                    [//15
-                        'question_text' => 'Ich achte darauf, dass alles nach meinen Vorstellungen abläuft.',
-                        'result_mappings' => 'plan',
-                    ],
-                    [//16
-                        'question_text' => 'Hilfe von anderen anzunehmen, fühlt sich wie ein Versagen an.',
-                        'result_mappings' => 'unabhaengig',
-                    ],
-                    [//17
-                        'question_text' => 'Es fällt mir schwer, mir selbst Pausen zu erlauben.',
-                        'result_mappings' => 'kampf',
-                    ],
-                    [//18
-                        'question_text' => 'Ich frage mich oft, ob ich genug tue, um von anderen gemocht zu werden.',
-                        'result_mappings' => 'harmonie',
-                    ],
-                    [//19
-                        'question_text' => 'Ich habe Angst, weniger respektiert zu werden, wenn ich nicht alles perfekt mache.',
-                        'result_mappings' => 'perfekt',
-                    ],
-                    [//20
-                        'question_text' => 'Es fällt mir schwer, Entscheidungen abzugeben, die mich betreffen.',
-                        'result_mappings' => 'unabhaengig',
-                    ],
-                    [//21
-                        'question_text' => 'Es fällt mir schwer, Aufgaben zu deligieren, weil ich sicher sein will, dass alles stimmt.',
-                        'result_mappings' => 'plan',
-                    ],
-                    [//22
-                        'question_text' => 'Ich glaube, dass Anstregung immer der Schlüssel zum Erfolg ist.',
-                        'result_mappings' => 'kampf',
-                    ],
-                    [//23
-                        'question_text' => 'Ich habe Angst davor, von anderen abhängig zu sein.',
-                        'result_mappings' => 'unabhaengig',
-                    ],
-                    [//24
-                        'question_text' => 'Kritik von anderen trifft mich sehr und beshäftigt mich lange.',
-                        'result_mappings' => 'harmonie',
-                    ],
-                    [//25
-                        'question_text' => 'Es macht mich unruhig, wenn ich nicht weiß, was als nächstes passiert.',
-                        'result_mappings' => 'plan',
-                    ],
-                ],
+                'default' => $defaults['questions'],
                 'title_field' => '{{{ question_text }}}',
             ]
         );
@@ -225,33 +125,7 @@ class Questionnaire_Widget extends Widget_Base {
                 'label' => __('Available Results', 'questionnaire-plugin'),
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $results_repeater->get_controls(),
-                'default' => [
-                    [
-                        'result_id' => 'perfekt',
-                        'result_title' => 'Die innere Stimme der Perfektionistin',
-                        'result_description' => ''
-                    ],
-                    [
-                        'result_id' => 'harmonie',
-                        'result_title' => 'Die innere Stimme der Harmonie-Sucherin',
-                        'result_description' => ''
-                    ],
-                    [
-                        'result_id' => 'kampf',
-                        'result_title' => 'Die innere Stimme der Kämpferin',
-                        'result_description' => ''
-                    ],
-                    [
-                        'result_id' => 'plan',
-                        'result_title' => 'Die innere Stimme der Planerin',
-                        'result_description' => '' 
-                    ],
-                    [
-                        'result_id' => 'unabhaengig',
-                        'result_title' => 'Die innere Stimme der Unabhängigen',
-                        'result_description' => ''
-                    ],
-                ],
+                'default' => $defaults['result_types'],
                 'title_field' => '{{{ result_title }}}',
             ]
         );
