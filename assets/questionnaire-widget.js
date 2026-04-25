@@ -56,12 +56,12 @@ jQuery(document).ready(function ($) {
         }
 
         function showResults(topResults) {
-            let html = '<div class="questionaire-results-chart">';
+            let html = '<div class="questionnaire-results-chart">';
             topResults.forEach(function (result) {
                 html +=
-                    '<div class="questionaire-results-bar-container">' +
-                    '<span class="questionaire-results-bar-label">' + result.title + '</span>' +
-                    '<div class="questionaire-results-bar-value" style="width: ' + result.percentage + '%;">' +
+                    '<div class="questionnaire-results-bar-container">' +
+                    '<span class="questionnaire-results-bar-label">' + result.title + '</span>' +
+                    '<div class="questionnaire-results-bar-value" style="width: ' + result.percentage + '%;">' +
                     result.score + ' Punkt' + (result.score > 1 ? 'e' : '') +
                     '</div></div>';
             });

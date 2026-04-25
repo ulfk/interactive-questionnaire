@@ -104,22 +104,22 @@
 }
 
 /* *** Result bars *** */
-.questionaire-results-chart {
+.questionnaire-results-chart {
     width: 100%;
     max-width: 800px;
 }
 
-.questionaire-results-bar-container {
+.questionnaire-results-bar-container {
     margin-bottom: 20px;
 }
 
-.questionaire-results-bar-label {
+.questionnaire-results-bar-label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.questionaire-results-bar-value {
+.questionnaire-results-bar-value {
     display: flex;
     align-items: center;
     height: 30px;
@@ -133,19 +133,19 @@
 
 /* Responsive Anpassungen */
 @media (max-width: 768px) {
-    .questionaire-results-chart {
+    .questionnaire-results-chart {
         max-width: 95%;
         padding: 0 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .questionaire-results-chart {
+    .questionnaire-results-chart {
         max-width: 100%;
         padding: 0 5px;
     }
     
-    .questionaire-results-bar-value {
+    .questionnaire-results-bar-value {
         height: 25px;
         font-size: 12px;
     }
