@@ -1,4 +1,9 @@
-# ToDo
+# Questionaire Elementor Widget
+
+This plugin provides an Elementor widget that displayes an interactive questionaire.
+
+
+## ToDo
 - OK Schriftfarbe der Rating-Buttons konfigurierbar machen
 - OK Buttons werden nicht kleiner 
   - style kommt von button->padding
