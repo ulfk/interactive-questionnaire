@@ -6,7 +6,7 @@
 Plugin Name: Interactive Questionaire
 Plugin URI: https://ulf-kuehnle.de
 Description: Interactive questionaire as Elementor widget.
-Version: 1.1.0
+Version: 1.2.0
 Author: Ulf Kuehnle
 Author URI: https://ulf-kuehnle.de/
 License: GPLv2

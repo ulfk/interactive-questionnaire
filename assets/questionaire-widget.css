@@ -119,13 +119,12 @@
     margin-bottom: 5px;
 }
 
-.questionaire-results-bar {
+.questionaire-results-bar-value {
+    display: flex;
+    align-items: center;
     height: 30px;
     border-radius: 4px;
     min-width: 2px;
-}
-
-.questionaire-results-bar-value {
     font-size: 14px;
     white-space: nowrap;
     padding-left: 10px;
@@ -146,11 +145,8 @@
         padding: 0 5px;
     }
     
-    .questionaire-results-bar {
-        height: 25px;
-    }
-    
     .questionaire-results-bar-value {
+        height: 25px;
         font-size: 12px;
     }
 } 

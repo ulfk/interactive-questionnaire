@@ -120,7 +120,7 @@ class Questionnaire_Widget extends Widget_Base {
                         'result_mappings' => 'kampf',
                     ],
                     [//10
-                        'question_text' => 'Es mach tmich unruhig, wenn jemand böse auf mich ist.',
+                        'question_text' => 'Es macht mich unruhig, wenn jemand böse auf mich ist.',
                         'result_mappings' => 'harmonie',
                     ],
                     [//11
@@ -128,7 +128,7 @@ class Questionnaire_Widget extends Widget_Base {
                         'result_mappings' => 'perfekt',
                     ],
                     [//12
-                        'question_text' => '"Augen zu und ruch" ist oft meine Devise.',
+                        'question_text' => '"Augen zu und durch" ist oft meine Devise.',
                         'result_mappings' => 'kampf',
                     ],
                     [//13
@@ -290,7 +290,7 @@ class Questionnaire_Widget extends Widget_Base {
             [
                 'name' => 'questionaire_typography',
                 'label' => __('Questionaire Font', 'questionnaire-plugin'),
-                'selector' => '{{WRAPPER}} .questionnaire-font',
+                'selector' => '{{WRAPPER}} .questionnaire-question',
             ]
         );
 
@@ -434,7 +434,7 @@ class Questionnaire_Widget extends Widget_Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '#007cba',
                 'selectors' => [
-                    '{{WRAPPER}} .questionaire-results-bar' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .questionaire-results-bar-value' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -506,9 +506,9 @@ class Questionnaire_Widget extends Widget_Base {
                          data-question="<?php echo esc_attr($index); ?>"
                          style="<?php echo $index === 0 ? 'display: block;' : 'display: none;'; ?>">
                         
-                        <h3 class="questionnaire-font questionnaire-question elementor-heading-title">
+                        <div class="questionnaire-question">
                             <?php echo esc_html($question['question_text']); ?>
-                        </h3>
+                        </div>
                         
                         <div class="rating-grid-auto-container">
                             <?php for ($i = 0; $i <= 3; $i++): ?>
@@ -536,23 +536,23 @@ class Questionnaire_Widget extends Widget_Base {
                 <div class="questionaire-results-chart">
                     <div class="questionaire-results-bar-container">
                         <span class="questionaire-results-bar-label">Die innere Stimme der Kämpferin</span>
-                        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 100%;">11 Punkte</div>
+                        <div class="questionaire-results-bar-value" style="width: 100%;">11 Punkte</div>
                     </div>
                     <div class="questionaire-results-bar-container">
                         <span class="questionaire-results-bar-label">Die innere Stimme der Planerin</span>
-                        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 91%;">10 Punkte</div>
+                        <div class="questionaire-results-bar-value" style="width: 91%;">10 Punkte</div>
                     </div>
                     <div class="questionaire-results-bar-container">
                         <span class="questionaire-results-bar-label">Die innere Stimme der Unabhängigen</span>
-                        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 82%;">9 Punkte</div>
+                        <div class="questionaire-results-bar-value" style="width: 82%;">9 Punkte</div>
                     </div>
                     <div class="questionaire-results-bar-container">
                         <span class="questionaire-results-bar-label">Die innere Stimme der Harmonie-Sucherin</span>
-                        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 55%;">6 Punkte</div>
+                        <div class="questionaire-results-bar-value" style="width: 55%;">6 Punkte</div>
                     </div>
                     <div class="questionaire-results-bar-container">
                         <span class="questionaire-results-bar-label">Die innere Stimme der Perfektionistin</span>
-                        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 5%;">1 Punkt</div>
+                        <div class="questionaire-results-bar-value" style="width: 5%;">1 Punkt</div>
                     </div>
                 </div>
             </div>
@@ -600,7 +600,7 @@ class Questionnaire_Widget extends Widget_Base {
                     container.find('.questionnaire-questions').hide();
                     container.find('.questionnaire-progress-wrapper').hide();
                     const topResults = getResultsInOrder();
-                    showResults("", "", topResults);                    
+                    showResults(topResults);                    
 				} else {
 					container.find('.questionnaire-question-wrapper').hide();
 					container.find('[data-question="' + currentQuestion + '"]').show();
@@ -634,13 +634,13 @@ class Questionnaire_Widget extends Widget_Base {
 					});
 			}
 			
-			function showResults(firstname, email, topResults) {
+			function showResults(topResults) {
                 let resultsHtml = '<div class="questionaire-results-chart">\n';
 				
 				topResults.forEach(function(result, index) {
                     resultsHtml +=  '    <div class="questionaire-results-bar-container">\n'+
                                     '        <span class="questionaire-results-bar-label">' + result.title + '</span>\n'+
-                                    '        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: ' + result.percentage + '%;">' 
+                                    '        <div class="questionaire-results-bar-value" style="width: ' + result.percentage + '%;">' 
                                                        + result.score + ' Punkt' + (result.score > 1 ? 'e' : '') + '</div>\n'+
                                     '    </div>\n';
 
@@ -698,7 +698,7 @@ class Questionnaire_Widget extends Widget_Base {
             <div class="questionnaire-questions">
                 <# _.each(settings.questions, function(question, index) { #>
                     <div class="questionnaire-question-wrapper" style="<# print(index === 0 ? 'display: block;' : 'display: none;') #>">
-                        <h3 class="questionnaire-question elementor-heading-title">{{{ question.question_text }}}</h3>
+                        <div class="questionnaire-question">{{{ question.question_text }}}</div>
                         
                         <div class="rating-grid-auto-container">
                             <# for(let i = 0; i <= 3; i++) { #>
@@ -721,23 +721,23 @@ class Questionnaire_Widget extends Widget_Base {
                     <div class="questionaire-results-chart">
                         <div class="questionaire-results-bar-container">
                             <span class="questionaire-results-bar-label">Die innere Stimme der Kämpferin</span>
-                            <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 100%;">11 Punkte</div>
+                            <div class="questionaire-results-bar-value" style="width: 100%;">11 Punkte</div>
                         </div>
                         <div class="questionaire-results-bar-container">
                             <span class="questionaire-results-bar-label">Die innere Stimme der Planerin</span>
-                            <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 91%;">10 Punkte</div>
+                            <div class="questionaire-results-bar-value" style="width: 91%;">10 Punkte</div>
                         </div>
                         <div class="questionaire-results-bar-container">
                             <span class="questionaire-results-bar-label">Die innere Stimme der Unabhängigen</span>
-                            <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 82%;">9 Punkte</div>
+                            <div class="questionaire-results-bar-value" style="width: 82%;">9 Punkte</div>
                         </div>
                         <div class="questionaire-results-bar-container">
                             <span class="questionaire-results-bar-label">Die innere Stimme der Harmonie-Sucherin</span>
-                            <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 55%;">6 Punkte</div>
+                            <div class="questionaire-results-bar-value" style="width: 55%;">6 Punkte</div>
                         </div>
                         <div class="questionaire-results-bar-container">
                             <span class="questionaire-results-bar-label">Die innere Stimme der Perfektionistin</span>
-                            <div class="questionaire-results-bar questionaire-results-bar-value" style="width: 5%;">1 Punkt</div>
+                            <div class="questionaire-results-bar-value" style="width: 5%;">1 Punkt</div>
                         </div>
                     </div>
                 </div>

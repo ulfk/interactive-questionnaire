@@ -95,10 +95,12 @@
             }
 
         </style>
+        <script src="http://localhost:8080/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+        <script src="http://localhost:8080/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
     </head>
     <body style="font-family: Arial;">
         
-        <div class="questionnaire-question-wrapper" data-question="0" style="display: block;">
+        <!--div class="questionnaire-question-wrapper" data-question="0" style="display: block;">
             <h3 class="questionnaire-font questionnaire-question elementor-heading-title">Ich brauche einen klaren Plan bevor ich mich wohlf&uuml;hle.</h3>
             <div class="rating-grid-auto-wrapper">
                 <div class="rating-grid-auto-container">
@@ -112,7 +114,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div-->
 
 
         <!--div class="questionaire-results-chart">
@@ -152,5 +154,74 @@
                 </div>
             </div>
         </div-->
+        <div class="results-content"></div>
     </body>
+    <script>
+        // http://localhost:8080/wp-content/plugins/custom/diagram.html?perfekt=12&harmonie=7&kampf=2&plan=2&unabhaengig=14
+		jQuery(document).ready(function($) {
+            const resultTypes = [
+                {"result_id":"perfekt","result_title":"Die innere Stimme der Perfektionistin","_id":"ce90b25"},
+                {"result_id":"harmonie","result_title":"Die innere Stimme der Harmonie-Sucherin","_id":"871b48a"},
+                {"result_id":"kampf","result_title":"Die innere Stimme der K\u00e4mpferin","_id":"6b1ad12"},
+                {"result_id":"plan","result_title":"Die innere Stimme der Planerin","_id":"74996d9"},
+                {"result_id":"unabhaengig","result_title":"Die innere Stimme der Unabh\u00e4ngigen","_id":"592ba09"}];
+
+            const params = new URLSearchParams(window.location.search);
+            const sumOfPoints = {};
+            params.forEach((value, key) => {
+                sumOfPoints[key] = value;
+            });
+
+            if(!sumOfPoints.hasOwnProperty('perfekt') && !sumOfPoints.hasOwnProperty('harmonie'))
+            {
+                const example = {"perfekt": 12, "harmonie": 7, "kampf": 2, "plan": 2, "unabhaengig": 14};
+                const exparams = new URLSearchParams(example);
+                const urlString = exparams.toString();
+                console.log(urlString)
+                window.location.search = urlString;
+                console.log(window.location)
+            }
+            else{
+                let results = getResultsInOrder();
+                showResults(results);
+            }
+            
+            function getResultsInOrder() {
+                let values = Object.values(sumOfPoints);
+                let totalSum = Math.max(...values);
+                console.log('totalSum='+totalSum);
+                return Object.entries(sumOfPoints)
+                    .sort(([,a], [,b]) => b - a)
+                    .map(([resultId, score]) => {
+                        const resultType = resultTypes.find(r => r.result_id === resultId);
+                        return {
+                            id: resultId,
+                            title: resultType ? resultType.result_title : resultId,
+                            description: resultType ? resultType.result_description : '',
+                            score: score,
+                            percentage: Math.round((score / totalSum) * 100)
+                        };
+                    });
+            }
+
+            function showResults(topResults) {
+                let resultsHtml = '<div class="questionaire-results-chart">\n';
+				
+				topResults.forEach(function(result, index) {
+                    resultsHtml +=  '    <div class="questionaire-results-bar-container">\n'+
+                                    '        <span class="questionaire-results-bar-label">' + result.title + '</span>\n'+
+                                    '        <div class="questionaire-results-bar questionaire-results-bar-value" style="width: ' + result.percentage + '%;">' 
+                                                       + result.score + ' Punkt' + (result.score > 1 ? 'e' : '') + '</div>\n'+
+                                    '    </div>\n';
+
+				});
+
+                resultsHtml += '</div>';
+
+				$('.results-content').html(resultsHtml);
+			}
+        });
+
+
+    </script>
 </html>
