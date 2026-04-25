@@ -30,3 +30,8 @@ A WordPress plugin that registers a single Elementor widget called **Interactive
 - Widget registration uses the current API: hook `elementor/widgets/register`, method `$widgets_manager->register()`. The deprecated `elementor/widgets/widgets_registered` / `register_widget_type()` pair must not be reintroduced.
 - `get_script_depends()` and `get_style_depends()` return `['questionnaire-widget']`, matching the handles used in `wp_enqueue_scripts`.
 
+## Versioning rule
+
+If a new version of the plugin should be bundled, be sure to adapt the version-number in the file `elementor-questionaire.php` at two locations:
+- In the comment header
+- In the variable `QUESTIONNAIRE_VERSION`
