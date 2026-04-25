@@ -497,7 +497,10 @@ class Questionnaire_Widget extends Widget_Base {
         $editMode = \Elementor\Plugin::$instance->editor->is_edit_mode();
         ?>
         
-        <div class="questionnaire-container" id="questionnaire-<?php echo esc_attr($widget_id); ?>">
+        <div class="questionnaire-container"
+             id="questionnaire-<?php echo esc_attr($widget_id); ?>"
+             data-questions="<?php echo esc_attr(wp_json_encode($settings['questions'])); ?>"
+             data-result-types="<?php echo esc_attr(wp_json_encode($settings['result_types'])); ?>">
             
             <!-- Progress Bar -->
             <div class="questionnaire-progress-wrapper">
@@ -562,126 +565,6 @@ class Questionnaire_Widget extends Widget_Base {
                 </div>
             </div>
         </div>
-
-        <?php
-        if ($editMode) return;
-        ?>
-
-        <script>
-		jQuery(document).ready(function($) {
-            console.log("document.ready called");
-			const widgetId = '<?php echo esc_js($widget_id); ?>';
-			const container = $('#questionnaire-' + widgetId);
-			const questions = <?php echo json_encode($settings['questions']); ?>;
-			const resultTypes = <?php echo json_encode($settings['result_types']); ?>;
-            $("#questionaire-results-container").hide();
-			
-			let currentQuestion = 0;
-			let answers = [];
-            let sumOfPoints = {};
-			
-			// Rating button click handler
-			container.on('click', '.rating-button', function() {
-				const questionIndex = parseInt($(this).data('question'));
-				const value = parseInt($(this).data('value'));
-                const mappings = $(this).data('mappings');
-				
-                sumOfPoints[mappings] = (sumOfPoints[mappings] || 0) + value;
-				
-				// Visual feedback
-				$(this).addClass('selected').siblings().removeClass('selected');
-				
-				// Move to next question after short delay
-				setTimeout(function() {
-					nextQuestion();
-				}, 100);
-			});
-			
-			function nextQuestion() {
-				currentQuestion++;
-				updateProgress();
-				
-				if (currentQuestion >= questions.length) {
-                    container.find('.questionnaire-questions').hide();
-                    container.find('.questionnaire-progress-wrapper').hide();
-                    const topResults = getResultsInOrder();
-                    showResults(topResults);                    
-				} else {
-					container.find('.questionnaire-question-wrapper').hide();
-					container.find('[data-question="' + currentQuestion + '"]').show();
-				}
-			}
-			
-			function updateProgress() {
-				const progress = (currentQuestion / questions.length) * 100;
-				container.find('.questionnaire-progress-bar').css('width', progress + '%');
-			}
-			
-			function getResultsInOrder() {
-                let values = Object.values(sumOfPoints);
-                let totalSum = Math.max(...values);
-                console.log('totalSum='+totalSum);
-				return Object.entries(sumOfPoints)
-					.sort(([,a], [,b]) => b - a)
-					.map(([resultId, score]) => {
-						const resultType = resultTypes.find(r => r.result_id === resultId);
-						return {
-							id: resultId,
-							title: resultType ? resultType.result_title : resultId,
-							description: resultType ? resultType.result_description : '',
-							score: score,
-							percentage: Math.round((score / totalSum) * 100)
-						};
-					});
-			}
-			
-			function showResults(topResults) {
-                let resultsHtml = '<div class="questionaire-results-chart">\n';
-				
-				topResults.forEach(function(result, index) {
-                    resultsHtml +=  '    <div class="questionaire-results-bar-container">\n'+
-                                    '        <span class="questionaire-results-bar-label">' + result.title + '</span>\n'+
-                                    '        <div class="questionaire-results-bar-value" style="width: ' + result.percentage + '%;">' 
-                                                       + result.score + ' Punkt' + (result.score > 1 ? 'e' : '') + '</div>\n'+
-                                    '    </div>\n';
-
-				});
-
-                resultsHtml += '</div>';
-
-				container.find('.results-content').html(resultsHtml);
-				container.find('.questionnaire-results').show();
-                $("#questionaire-results-container").show();
-			}
-			
-			function validateEmail(email) {
-				const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				return re.test(email);
-			}
-			
-			function sendResultsToServer(firstname, email, topResults, answers) {
-                console.log('executing AJAX save_questionnaire_results')
-				$.ajax({
-					url: questionnaire_ajax.ajax_url,
-					type: 'POST',
-					data: {
-						action: 'save_questionnaire_results',
-						nonce: questionnaire_ajax.nonce,
-						firstname: firstname,
-						email: email,
-						results: topResults,
-						answers: answers
-					},
-					success: function(response) {
-						console.log('Results saved successfully');
-					},
-					error: function() {
-						console.log('Error saving results');
-					}
-				});
-			}
-		});
-        </script>
         </div>
         <?php
     }
