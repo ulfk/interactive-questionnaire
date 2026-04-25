@@ -12,10 +12,11 @@ Author URI: https://ulf-kuehnle.de/
 License: GPLv2
 */
 
+define('QUESTIONNAIRE_VERSION', '1.2.0');
 
-add_action('elementor/widgets/widgets_registered', function() {
+add_action('elementor/widgets/register', function( $widgets_manager ) {
     include_once "widgets/questionaire-widget.php";
-    \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Questionnaire_Widget());
+    $widgets_manager->register(new Questionnaire_Widget());
 });
 
 // Scripts und Styles einbinden
@@ -28,15 +29,15 @@ function questionnaire_widget_scripts() {
         'questionnaire-widget',
         plugin_dir_url(__FILE__) . 'assets/questionaire-widget.js',
         ['jquery'],
-        '1.0.0',
+        QUESTIONNAIRE_VERSION,
         true
     );
-    
+
     wp_enqueue_style(
         'questionnaire-widget',
         plugin_dir_url(__FILE__) . 'assets/questionaire-widget.css',
         [],
-        '1.0.0'
+        QUESTIONNAIRE_VERSION
     );
 }
 ?>

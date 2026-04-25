@@ -681,6 +681,7 @@ class Questionnaire_Widget extends Widget_Base {
 			}
 		});
         </script>
+        </div>
         <?php
     }
 
@@ -716,7 +717,7 @@ class Questionnaire_Widget extends Widget_Base {
             </div>
             
             <div class="questionnaire-results" style="margin-top:30px;">
-                <h3 class="elementor-heading-title">Dein Ergebnis</h3>
+                <h3 class="elementor-heading-title questionnaire-result-title">Dein Ergebnis</h3>
                 <div class="results-content elementor-text-editor">
                     <div class="questionaire-results-chart">
                         <div class="questionaire-results-bar-container">
