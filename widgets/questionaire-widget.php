@@ -229,22 +229,27 @@ class Questionnaire_Widget extends Widget_Base {
                     [
                         'result_id' => 'perfekt',
                         'result_title' => 'Die innere Stimme der Perfektionistin',
+                        'result_description' => ''
                     ],
                     [
                         'result_id' => 'harmonie',
-                        'result_title' => 'Die innere Stimme der Harmonie-Sucherin', 
+                        'result_title' => 'Die innere Stimme der Harmonie-Sucherin',
+                        'result_description' => ''
                     ],
                     [
                         'result_id' => 'kampf',
-                        'result_title' => 'Die innere Stimme der Kämpferin', 
+                        'result_title' => 'Die innere Stimme der Kämpferin',
+                        'result_description' => ''
                     ],
                     [
                         'result_id' => 'plan',
-                        'result_title' => 'Die innere Stimme der Planerin', 
+                        'result_title' => 'Die innere Stimme der Planerin',
+                        'result_description' => '' 
                     ],
                     [
                         'result_id' => 'unabhaengig',
-                        'result_title' => 'Die innere Stimme der Unabhängigen', 
+                        'result_title' => 'Die innere Stimme der Unabhängigen',
+                        'result_description' => ''
                     ],
                 ],
                 'title_field' => '{{{ result_title }}}',
@@ -610,10 +615,6 @@ class Questionnaire_Widget extends Widget_Base {
 			function updateProgress() {
 				const progress = (currentQuestion / questions.length) * 100;
 				container.find('.questionnaire-progress-bar').css('width', progress + '%');
-			}
-			
-			function showContactForm() {
-				container.find('.questionnaire-questions').hide();
 			}
 			
 			function getResultsInOrder() {
