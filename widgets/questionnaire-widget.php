@@ -415,30 +415,31 @@ class Questionnaire_Widget extends Widget_Base {
             <div class="questionnaire-results" <?php if (!$editMode) echo " style=\"display: none;\""?>>
                 <h3 class="elementor-heading-title questionnaire-result-title">Dein Ergebnis</h3>
                 <div class="results-content elementor-text-editor">
-                <div class="questionnaire-results-chart">
-                    <div class="questionnaire-results-bar-container">
-                        <span class="questionnaire-results-bar-label">Die innere Stimme der Kämpferin</span>
-                        <div class="questionnaire-results-bar-value" style="width: 100%;">11 Punkte</div>
-                    </div>
-                    <div class="questionnaire-results-bar-container">
-                        <span class="questionnaire-results-bar-label">Die innere Stimme der Planerin</span>
-                        <div class="questionnaire-results-bar-value" style="width: 91%;">10 Punkte</div>
-                    </div>
-                    <div class="questionnaire-results-bar-container">
-                        <span class="questionnaire-results-bar-label">Die innere Stimme der Unabhängigen</span>
-                        <div class="questionnaire-results-bar-value" style="width: 82%;">9 Punkte</div>
-                    </div>
-                    <div class="questionnaire-results-bar-container">
-                        <span class="questionnaire-results-bar-label">Die innere Stimme der Harmonie-Sucherin</span>
-                        <div class="questionnaire-results-bar-value" style="width: 55%;">6 Punkte</div>
-                    </div>
-                    <div class="questionnaire-results-bar-container">
-                        <span class="questionnaire-results-bar-label">Die innere Stimme der Perfektionistin</span>
-                        <div class="questionnaire-results-bar-value" style="width: 5%;">1 Punkt</div>
+                    <div class="questionnaire-results-chart">
+                        <div class="questionnaire-results-bar-container">
+                            <span class="questionnaire-results-bar-label">Die innere Stimme der Kämpferin</span>
+                            <div class="questionnaire-results-bar-value" style="width: 100%;">11 Punkte</div>
+                        </div>
+                        <div class="questionnaire-results-bar-container">
+                            <span class="questionnaire-results-bar-label">Die innere Stimme der Planerin</span>
+                            <div class="questionnaire-results-bar-value" style="width: 91%;">10 Punkte</div>
+                        </div>
+                        <div class="questionnaire-results-bar-container">
+                            <span class="questionnaire-results-bar-label">Die innere Stimme der Unabhängigen</span>
+                            <div class="questionnaire-results-bar-value" style="width: 82%;">9 Punkte</div>
+                        </div>
+                        <div class="questionnaire-results-bar-container">
+                            <span class="questionnaire-results-bar-label">Die innere Stimme der Harmonie-Sucherin</span>
+                            <div class="questionnaire-results-bar-value" style="width: 55%;">6 Punkte</div>
+                        </div>
+                        <div class="questionnaire-results-bar-container">
+                            <span class="questionnaire-results-bar-label">Die innere Stimme der Perfektionistin</span>
+                            <div class="questionnaire-results-bar-value" style="width: 5%;">1 Punkt</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            
         </div>
         <?php
     }
